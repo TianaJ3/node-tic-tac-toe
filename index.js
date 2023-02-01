@@ -9,7 +9,12 @@ const n = () => {
   ` ${g[1][0] || 4} | ${g[1][1] || 5} | ${g[1][2] || 6}\n---+---+---\n` + ` ${g[2][0] || 7} | ${g[2][1] || 8} | ${g[2][2] || 9}\n`);
   rl.question(`${t} (1-9): `, input => {
     let i = input - 1;
-    let [r, c] = [i / 3 | 0, i % 3];
+    let [r, c] = [Math.floor(i / 3), i % 3]; 
+    if (input < 1 || input > 9) {
+      console.log('1 and 9, try again.');
+      n();
+      return;
+    }
     if (g[r][c] === null) {
       g[r][c] = t;
       if (win(t)) console.log(`${t} win!`), rl.close();
