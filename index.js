@@ -13,7 +13,7 @@ const n = () => {
   rl.question(`${t} (1-9): `, input => {
     let i = input - 1;
     let [r, c] = [Math.floor(i / 3), i % 3]; 
-    if (input < 1 || input > 9 || g[r][c] !== null) return console.log('Invalid input, try again.'), n();
+    if (!/^[0-9]+$/.test(input) || input < 1 || input > 9 || g[r][c] !== null) return console.log('Invalid input, try again.'), n();
     g[r][c] = t;
     if (win(t)) return console.log(`${t} win!`), rl.close();
     if (g.flat().every(c => c)) return console.log('Draw.'), rl.close();
